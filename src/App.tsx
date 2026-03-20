@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight, Play, Pause, Volume2 } from 'lucide-react';
 
 const IMAGES = [
   "https://i.postimg.cc/7LbJypn0/30da1dc4_d44c_4cc2_a88b_c9db8fa87f54.jpg",
@@ -164,6 +164,103 @@ const ScrollingComments = () => {
   );
 };
 
+const VoiceMessage = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const audioRef = React.useRef<HTMLAudioElement>(null);
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(e => console.log("Autoplay blocked or error:", e));
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const updateProgress = () => {
+      const p = (audio.currentTime / audio.duration) * 100;
+      setProgress(p || 0);
+    };
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setProgress(0);
+    };
+
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('ended', handleEnded);
+    return () => {
+      audio.removeEventListener('timeupdate', updateProgress);
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, []);
+
+  return (
+    <div className="mt-8 sm:mt-10 flex flex-col items-center px-4 w-full max-w-md mx-auto">
+      <p className="text-zinc-400 font-medium mb-4 flex items-center justify-center gap-2 text-base sm:text-lg italic">
+        "Ouça esse áudio que gravei pra você... 🙈"
+      </p>
+      
+      <div className="w-full bg-zinc-900/80 p-4 rounded-2xl border border-zinc-800 backdrop-blur-md shadow-[0_0_30px_rgba(16,185,129,0.1)] flex items-center gap-4">
+        <button 
+          onClick={togglePlay}
+          className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-black hover:bg-emerald-400 transition-colors flex-shrink-0 shadow-lg"
+        >
+          {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" className="ml-1" />}
+        </button>
+        
+        <div className="flex-1">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Mensagem de Voz</span>
+            <Volume2 size={14} className="text-zinc-600" />
+          </div>
+          
+          <div className="relative h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+            <motion.div 
+              className="absolute top-0 left-0 h-full bg-emerald-500"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ type: "spring", bounce: 0, duration: 0.1 }}
+            />
+          </div>
+          
+          <div className="flex justify-between mt-1.5">
+            <div className="flex gap-0.5">
+              {[...Array(12)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-1 rounded-full transition-all duration-300 ${
+                    isPlaying ? 'animate-pulse bg-emerald-500/50' : 'bg-zinc-700'
+                  }`}
+                  style={{ 
+                    height: `${Math.random() * 12 + 4}px`,
+                    animationDelay: `${i * 0.1}s`
+                  }}
+                />
+              ))}
+            </div>
+            <span className="text-[10px] text-zinc-500 font-mono">0:12</span>
+          </div>
+        </div>
+        
+        <audio 
+          ref={audioRef}
+          src="https://files.catbox.moe/i411lu.mp3" 
+          loop 
+          className="hidden"
+        />
+      </div>
+    </div>
+  );
+};
+
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -228,24 +325,7 @@ const Carousel = () => {
         </div>
       </div>
       <ScrollingComments />
-
-      {/* Audio Player */}
-      <div className="mt-6 sm:mt-8 flex flex-col items-center px-4">
-        <p className="text-zinc-400 font-medium mb-4 flex items-center justify-center gap-2 text-base sm:text-lg">
-          Quer ouvir minha voz amor? 🙈
-        </p>
-        <div className="w-full max-w-md bg-zinc-900/50 p-3 sm:p-4 rounded-2xl border border-zinc-800 backdrop-blur-sm shadow-xl">
-          <audio 
-            src="https://files.catbox.moe/i411lu.mp3" 
-            autoPlay 
-            loop 
-            controls 
-            className="w-full h-10 accent-emerald-500"
-          >
-            Seu navegador não suporta o elemento de áudio.
-          </audio>
-        </div>
-      </div>
+      <VoiceMessage />
     </div>
   );
 };
