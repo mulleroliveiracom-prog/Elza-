@@ -166,14 +166,20 @@ const ScrollingComments = () => {
 
 const VoiceMessage = () => {
   return (
-    <div className="mt-8 sm:mt-10 flex flex-col items-center px-4 w-full max-w-md mx-auto">
-      <audio 
-        controls 
-        className="w-full"
-        src="https://files.catbox.moe/i411lu.mp3"
-      >
-        Seu navegador não suporta o elemento de áudio.
-      </audio>
+    <div className="mt-8 sm:mt-12 flex flex-col items-center px-4 w-full max-w-md mx-auto">
+      <h3 className="text-emerald-500 font-bold text-center mb-6 text-sm sm:text-base tracking-tight drop-shadow-sm">
+        Você tem 1 nova mensagem de voz privada. 📩
+      </h3>
+      
+      <div className="w-full bg-zinc-950/80 p-6 rounded-[2.5rem] border border-emerald-500/20 shadow-[0_0_30px_rgba(16,185,129,0.1)] backdrop-blur-md flex justify-center">
+        <audio 
+          controls 
+          className="w-full"
+          src="https://files.catbox.moe/i411lu.mp3"
+        >
+          Seu navegador não suporta o elemento de áudio.
+        </audio>
+      </div>
     </div>
   );
 };
