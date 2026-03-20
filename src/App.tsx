@@ -167,17 +167,30 @@ const ScrollingComments = () => {
 const VoiceMessage = () => {
   return (
     <div className="mt-8 sm:mt-12 flex flex-col items-center px-4 w-full max-w-md mx-auto">
-      <h3 className="text-emerald-500 font-bold text-center mb-6 text-sm sm:text-base tracking-tight drop-shadow-sm">
-        Você tem 1 nova mensagem de voz privada. 📩
-      </h3>
-      
-      <audio 
-        controls 
-        className="w-full"
-        src="https://files.catbox.moe/i411lu.mp3"
-      >
-        Seu navegador não suporta o elemento de áudio.
-      </audio>
+      {/* VIP Access Card Container */}
+      <div className="w-full bg-zinc-950 p-8 rounded-[2.5rem] border-2 border-emerald-500/30 animate-pulse-glow shadow-2xl backdrop-blur-sm flex flex-col items-center gap-6">
+        
+        {/* Eye-catching Title */}
+        <div className="text-center">
+          <h3 className="text-emerald-400 font-bold text-lg sm:text-xl tracking-tight drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
+            Você tem 1 nova mensagem de voz privada. 📩
+          </h3>
+          <p className="text-emerald-500/60 italic text-xs sm:text-sm mt-1">
+            Clique no play para ouvir...
+          </p>
+        </div>
+
+        {/* Native Audio Player with Filter */}
+        <div className="w-full">
+          <audio 
+            controls 
+            className="w-full invert opacity-80 hover:opacity-100 transition-opacity duration-300"
+            src="https://drive.google.com/uc?export=download&id=17wSqd_mOBgLddiczvv1edIqbZuykFa0z"
+          >
+            Seu navegador não suporta o elemento de áudio.
+          </audio>
+        </div>
+      </div>
     </div>
   );
 };
