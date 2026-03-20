@@ -3,15 +3,28 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const IMAGES = [
   "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/1.png",
   "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/2.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/3.png",
   "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/4.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/8.png"
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/5.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/6.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/7.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/8.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/9.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/10.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/11.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/12.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/13.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/14.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/15.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/16.png",
+  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/17.png"
 ];
 
 const MALE_NAMES = [
@@ -31,6 +44,72 @@ const Benefit = ({ icon: Icon, text }: { icon: any, text: string }) => (
     <span className="text-lg font-medium">{text}</span>
   </div>
 );
+
+const Carousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % IMAGES.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + IMAGES.length) % IMAGES.length);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 4000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
+
+  return (
+    <div className="relative w-full max-w-4xl mx-auto px-4 py-12 group">
+      <div className="relative aspect-[3/4] md:aspect-video rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentIndex}
+            src={IMAGES[currentIndex]}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </AnimatePresence>
+        
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
+        >
+          <ChevronRight size={24} />
+        </button>
+
+        {/* Indicators */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-1.5 rounded-full transition-all ${
+                idx === currentIndex ? "w-8 bg-emerald-500" : "w-2 bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const PurchaseNotification = () => {
   const [currentName, setCurrentName] = useState("");
@@ -111,29 +190,8 @@ export default function App() {
         </div>
       </header>
 
-      {/* Image Grid */}
-      <section className="px-4 py-12 max-w-5xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {IMAGES.map((src, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 group relative"
-            >
-              <img
-                src={src}
-                alt={`Preview ${idx + 1}`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      {/* Carousel Section */}
+      <Carousel />
 
       {/* Benefits Section */}
       <section className="py-20 px-6 bg-zinc-950/50">
