@@ -80,10 +80,10 @@ const MALE_NAMES = [
 
 const Benefit = ({ icon: Icon, text }: { icon: any, text: string }) => (
   <div className="flex items-center gap-3 text-zinc-300">
-    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-500">
-      <Icon size={20} />
+    <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-500">
+      <Icon size={16} className="sm:w-5 sm:h-5" />
     </div>
-    <span className="text-lg font-medium">{text}</span>
+    <span className="text-base sm:text-lg font-medium">{text}</span>
   </div>
 );
 
@@ -104,10 +104,10 @@ const LiveViewers = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center gap-2 mb-4 text-zinc-400 font-bold text-sm uppercase tracking-wider">
-      <span className="relative flex h-2 w-2">
+    <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4 text-zinc-400 font-bold text-[10px] sm:text-sm uppercase tracking-wider whitespace-nowrap">
+      <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+        <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-red-500"></span>
       </span>
       Mais de <span className="text-white tabular-nums">{count.toLocaleString()}</span> estão vendo isso agora
     </div>
@@ -310,7 +310,7 @@ export default function App() {
       <PurchaseNotification />
       
       {/* Hero Section */}
-      <header className="relative pt-20 pb-12 px-6 overflow-hidden">
+      <header className="relative pt-12 sm:pt-20 pb-8 sm:pb-12 px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-radial from-emerald-500/10 to-transparent opacity-50 pointer-events-none" />
         
         <div className="max-w-3xl mx-auto text-center relative z-10">
@@ -319,10 +319,10 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter mb-4 sm:mb-6 bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent px-4">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-black tracking-tighter mb-4 sm:mb-6 bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent px-2 sm:px-4">
               Você não deveria estar vendo isso… 😈
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-zinc-400 font-medium max-w-2xl mx-auto leading-relaxed px-6">
+            <p className="text-base sm:text-xl md:text-2xl text-zinc-400 font-medium max-w-2xl mx-auto leading-relaxed px-4 sm:px-6">
               Conteúdos exclusivos, sem censura, só pra quem entra no privado. Se você chegou até aqui… já sabe o que quer.
             </p>
           </motion.div>
@@ -348,23 +348,23 @@ export default function App() {
       </section>
 
       {/* Urgency & Social Proof */}
-      <section className="py-20 px-6 text-center">
+      <section className="py-12 sm:py-20 px-6 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 mb-8">
-            <AlertTriangle size={16} />
-            <span className="text-sm font-bold uppercase tracking-tighter">Acesso liberado por tempo limitado</span>
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 mb-6 sm:mb-8">
+            <AlertTriangle size={14} className="sm:w-4 sm:h-4" />
+            <span className="text-[10px] sm:text-sm font-bold uppercase tracking-tighter">Acesso liberado por tempo limitado</span>
           </div>
           
-          <p className="text-zinc-400 italic mb-12">
+          <p className="text-zinc-400 italic mb-8 sm:mb-12 text-sm sm:text-base">
             Depois pode sair do ar sem aviso
           </p>
 
-          <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 backdrop-blur-sm">
-            <div className="flex justify-center gap-1 mb-4 text-emerald-500">
-              <Users size={24} />
-              <span className="font-bold">+1.000 pessoas já entraram</span>
+          <div className="p-6 sm:p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 backdrop-blur-sm shadow-lg">
+            <div className="flex justify-center gap-1.5 mb-4 text-emerald-500">
+              <Users size={20} className="sm:w-6 sm:h-6" />
+              <span className="font-bold text-sm sm:text-base">+1.000 pessoas já entraram</span>
             </div>
-            <blockquote className="text-xl font-medium text-zinc-200">
+            <blockquote className="text-lg sm:text-xl font-medium text-zinc-200 leading-snug">
               “Entrei achando que era mais do mesmo… mas é outro nível 🔥”
             </blockquote>
           </div>
@@ -401,7 +401,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-zinc-900 text-center text-zinc-600 text-xs uppercase tracking-widest">
+      <footer className="py-12 border-t border-zinc-900 text-center text-zinc-600 text-[10px] sm:text-xs uppercase tracking-widest px-6">
         &copy; {new Date().getFullYear()} Privado Exclusivo • Todos os direitos reservados
       </footer>
     </div>
