@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight, Play, Pause, Volume2 } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const IMAGES = [
   "https://i.postimg.cc/7LbJypn0/30da1dc4_d44c_4cc2_a88b_c9db8fa87f54.jpg",
@@ -165,141 +165,25 @@ const ScrollingComments = () => {
 };
 
 const VoiceMessage = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const audioRef = React.useRef<HTMLAudioElement>(null);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            setIsPlaying(true);
-          }).catch(error => {
-            console.error("Playback failed:", error);
-            setIsPlaying(false);
-          });
-        }
-      }
-      if (isPlaying) setIsPlaying(false);
-    }
-  };
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const updateProgress = () => {
-      const p = (audio.currentTime / audio.duration) * 100;
-      setProgress(p || 0);
-    };
-
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-    };
-
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setProgress(0);
-    };
-
-    audio.addEventListener('timeupdate', updateProgress);
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-    audio.addEventListener('ended', handleEnded);
-    audio.addEventListener('play', () => setIsPlaying(true));
-    audio.addEventListener('pause', () => setIsPlaying(false));
-
-    return () => {
-      audio.removeEventListener('timeupdate', updateProgress);
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      audio.removeEventListener('ended', handleEnded);
-      audio.removeEventListener('play', () => setIsPlaying(true));
-      audio.removeEventListener('pause', () => setIsPlaying(false));
-    };
-  }, []);
-
-  const formatTime = (time: number) => {
-    if (isNaN(time)) return "0:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  };
-
   return (
     <div className="mt-8 sm:mt-10 flex flex-col items-center px-4 w-full max-w-md mx-auto">
       <div className="mb-4 text-center">
-        <p className="text-emerald-500 font-black text-xs uppercase tracking-[0.2em] mb-1 animate-pulse">
+        <p className="text-emerald-500 font-black text-xs uppercase tracking-[0.2em] mb-1">
           Mensagem de voz exclusiva 🔒
         </p>
         <p className="text-zinc-400 font-medium text-sm sm:text-base italic">
-          "Clique no play para ouvir o que eu gravei... 🙈"
+          "Ouça o áudio que gravei para você abaixo"
         </p>
       </div>
       
-      <div 
-        onClick={togglePlay}
-        className="w-full bg-zinc-900/90 p-4 rounded-2xl border border-emerald-500/20 backdrop-blur-xl shadow-[0_0_50px_rgba(16,185,129,0.15)] flex items-center gap-4 cursor-pointer hover:border-emerald-500/40 transition-all group"
-      >
-        <div 
-          className="w-14 h-14 rounded-full bg-emerald-500 flex items-center justify-center text-black hover:scale-105 transition-transform flex-shrink-0 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
-        >
-          {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" className="ml-1" />}
-        </div>
-        
-        <div className="flex-1">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-              <span className="text-[10px] font-black text-white uppercase tracking-widest">Áudio Privado</span>
-            </div>
-            <Volume2 size={14} className="text-zinc-500" />
-          </div>
-          
-          <div className="relative h-2 bg-zinc-800/50 rounded-full overflow-hidden">
-            <motion.div 
-              className="absolute top-0 left-0 h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ type: "spring", bounce: 0, duration: 0.1 }}
-            />
-          </div>
-          
-          <div className="flex justify-between mt-2 items-center">
-            <div className="flex gap-1 items-end h-4">
-              {[...Array(18)].map((_, i) => (
-                <motion.div 
-                  key={i} 
-                  animate={isPlaying ? { 
-                    height: [4, Math.random() * 16 + 4, 4],
-                  } : { height: 4 }}
-                  transition={{ 
-                    repeat: Infinity, 
-                    duration: 0.5 + Math.random() * 0.5,
-                    delay: i * 0.05 
-                  }}
-                  className={`w-1 rounded-full ${
-                    isPlaying ? 'bg-emerald-500' : 'bg-zinc-700'
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-[10px] text-zinc-400 font-mono font-bold">
-              {isPlaying ? formatTime(audioRef.current?.currentTime || 0) : formatTime(duration || 12)}
-            </span>
-          </div>
-        </div>
-        
+      <div className="w-full bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800 backdrop-blur-sm">
         <audio 
-          ref={audioRef}
-          src="https://files.catbox.moe/i411lu.mp3" 
-          preload="auto"
-          loop 
-          className="hidden"
-        />
+          controls 
+          className="w-full accent-emerald-500"
+          src="https://files.catbox.moe/i411lu.mp3"
+        >
+          Seu navegador não suporta o elemento de áudio.
+        </audio>
       </div>
     </div>
   );
