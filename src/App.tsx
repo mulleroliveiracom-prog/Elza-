@@ -127,8 +127,8 @@ const ScrollingComments = () => {
   const currentComment = COMMENTS[index];
 
   return (
-    <div className="w-full max-w-xl mx-auto px-6 py-8 mt-4">
-      <div className="relative h-32 flex items-center justify-center overflow-hidden bg-zinc-900/30 rounded-2xl border border-zinc-800/50 backdrop-blur-sm">
+    <div className="w-full max-w-xl mx-auto px-4 sm:px-6 py-6 sm:py-8 mt-4">
+      <div className="relative min-h-[160px] sm:h-32 flex items-center justify-center overflow-hidden bg-zinc-900/30 rounded-2xl border border-zinc-800/50 backdrop-blur-sm">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -136,7 +136,7 @@ const ScrollingComments = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center text-center px-8"
+            className="flex flex-col items-center text-center px-4 sm:px-8 py-4"
           >
             <div className="flex items-center gap-3 mb-3">
               <img 
@@ -154,7 +154,7 @@ const ScrollingComments = () => {
                 </div>
               </div>
             </div>
-            <p className="text-zinc-200 font-medium italic text-base leading-tight">
+            <p className="text-zinc-200 font-medium italic text-sm sm:text-base leading-tight">
               "{currentComment.text}"
             </p>
           </motion.div>
@@ -181,9 +181,9 @@ const Carousel = () => {
   }, [nextSlide]);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto px-4 py-8 group">
+    <div className="relative w-full max-w-4xl mx-auto px-4 py-4 sm:py-8 group">
       <LiveViewers />
-      <div className="relative aspect-[3/4] md:aspect-video rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
+      <div className="relative aspect-[4/5] sm:aspect-video rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
         <AnimatePresence mode="wait">
           <motion.img
             key={currentIndex}
@@ -200,28 +200,28 @@ const Carousel = () => {
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows - Visible on mobile for better UX */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={20} className="sm:w-6 sm:h-6" />
         </button>
 
         {/* Indicators */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2">
           {IMAGES.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-1.5 rounded-full transition-all ${
-                idx === currentIndex ? "w-8 bg-emerald-500" : "w-2 bg-white/30"
+              className={`h-1 sm:h-1.5 rounded-full transition-all ${
+                idx === currentIndex ? "w-6 sm:w-8 bg-emerald-500" : "w-1.5 sm:w-2 bg-white/30"
               }`}
             />
           ))}
@@ -230,11 +230,11 @@ const Carousel = () => {
       <ScrollingComments />
 
       {/* Audio Player */}
-      <div className="mt-8 flex flex-col items-center">
-        <p className="text-zinc-400 font-medium mb-4 flex items-center justify-center gap-2 text-lg">
+      <div className="mt-6 sm:mt-8 flex flex-col items-center px-4">
+        <p className="text-zinc-400 font-medium mb-4 flex items-center justify-center gap-2 text-base sm:text-lg">
           Quer ouvir minha voz amor? 🙈
         </p>
-        <div className="w-full max-w-md bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800 backdrop-blur-sm shadow-xl">
+        <div className="w-full max-w-md bg-zinc-900/50 p-3 sm:p-4 rounded-2xl border border-zinc-800 backdrop-blur-sm shadow-xl">
           <audio 
             src="https://files.catbox.moe/i411lu.mp3" 
             autoPlay 
@@ -285,7 +285,7 @@ const PurchaseNotification = () => {
           initial={{ opacity: 0, x: -50, scale: 0.9 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           exit={{ opacity: 0, x: -20, scale: 0.95 }}
-          className="fixed bottom-6 left-6 z-50 flex items-center gap-3 p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800 backdrop-blur-md shadow-2xl"
+          className="fixed bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-auto z-50 flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800 backdrop-blur-md shadow-2xl"
         >
           <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
             <ShoppingBag size={20} />
@@ -319,10 +319,10 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter mb-4 sm:mb-6 bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent px-4">
               Você não deveria estar vendo isso… 😈
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-400 font-medium max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-zinc-400 font-medium max-w-2xl mx-auto leading-relaxed px-6">
               Conteúdos exclusivos, sem censura, só pra quem entra no privado. Se você chegou até aqui… já sabe o que quer.
             </p>
           </motion.div>
@@ -333,12 +333,12 @@ export default function App() {
       <Carousel />
 
       {/* Benefits Section */}
-      <section className="py-20 px-6 bg-zinc-950/50">
+      <section className="py-12 sm:py-20 px-6 bg-zinc-950/50">
         <div className="max-w-xl mx-auto">
-          <h2 className="text-2xl font-bold mb-10 text-center uppercase tracking-widest text-zinc-500">
+          <h2 className="text-xl sm:text-2xl font-bold mb-8 sm:mb-10 text-center uppercase tracking-widest text-zinc-500">
             Aqui dentro você vai encontrar:
           </h2>
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6">
             <Benefit icon={Flame} text="Conteúdos +18 exclusivos" />
             <Benefit icon={MessageCircle} text="Respostas diretas no privado" />
             <Benefit icon={CheckCircle2} text="Fotos e vídeos que não vão pro Insta" />
@@ -372,12 +372,12 @@ export default function App() {
       </section>
 
       {/* Pricing & CTA */}
-      <section className="pb-32 px-6 text-center">
+      <section className="pb-24 sm:pb-32 px-6 text-center">
         <div className="max-w-md mx-auto">
           <div className="mb-8">
-            <span className="text-zinc-500 line-through text-xl">De R$97,90</span>
-            <div className="text-5xl font-black mt-2">
-              <span className="text-zinc-400 text-2xl font-medium align-top mr-1">por apenas:</span>
+            <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
+            <div className="text-4xl sm:text-5xl font-black mt-2">
+              <span className="text-zinc-400 text-xl sm:text-2xl font-medium align-top mr-1">por apenas:</span>
               <span className="text-emerald-500">R$27,90</span>
             </div>
           </div>
@@ -386,7 +386,7 @@ export default function App() {
             href="https://linkpriv.app/NjgyMDE="
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center justify-center w-full py-6 px-8 rounded-2xl bg-emerald-500 text-black font-black text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
+            className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
           >
             <span className="relative z-10 flex items-center gap-2">
               ENTRAR AGORA NO PRIVADO 😈
