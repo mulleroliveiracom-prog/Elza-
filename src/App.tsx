@@ -179,8 +179,9 @@ const VoiceMessage = () => {
       <div className="w-full bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800 backdrop-blur-sm">
         <audio 
           controls 
+          preload="auto"
           className="w-full accent-emerald-500"
-          src="https://files.catbox.moe/i411lu.mp3"
+          src="https://docs.google.com/uc?export=download&id=17wSqd_mOBgLddiczvv1edIqbZuykFa0z"
         >
           Seu navegador não suporta o elemento de áudio.
         </audio>
