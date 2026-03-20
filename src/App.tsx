@@ -8,23 +8,65 @@ import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const IMAGES = [
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/1.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/2.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/3.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/4.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/5.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/6.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/7.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/8.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/9.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/10.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/11.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/12.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/13.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/14.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/15.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/16.png",
-  "https://storage.googleapis.com/mcp-archive/ais-dev-cgv2ugbwfqogg2nf7mty5z-12866266735.us-east5.run.app/17.png"
+  "https://i.postimg.cc/7LbJypn0/30da1dc4_d44c_4cc2_a88b_c9db8fa87f54.jpg",
+  "https://i.postimg.cc/cJjg1XFT/62fd4d6a_c006_4720_8d61_7107e9b7892b.jpg",
+  "https://i.postimg.cc/CKtBMmvY/885db510_cea1_43b9_87a6_ee1e4dd18864.jpg",
+  "https://i.postimg.cc/xd7Jjts2/bdec06c6_bf26_4076_831d_98adc740a2c3.jpg",
+  "https://i.postimg.cc/8CsfVqmR/c23ec8e2_de20_46fb_b092_a2a5b8f270d1_(1).jpg",
+  "https://i.postimg.cc/wBPyx0wW/f65a06fc_78c3_462a_8721_32fca3fddf58_(1).jpg",
+  "https://i.postimg.cc/7LcGPmK9/fa33c8ba_c6b5_452d_8647_32a90909d1a4.jpg",
+  "https://i.postimg.cc/5tjQMZSw/image_(14).jpg",
+  "https://i.postimg.cc/Gp9T1Zxt/image_(21).jpg",
+  "https://i.postimg.cc/43M74BWB/image_(8).jpg",
+  "https://i.postimg.cc/wB3RdSQ5/image_(9).jpg"
+];
+
+const COMMENTS = [
+  { text: "Mano, o conteúdo de hoje tá surreal... 😈", name: "Fábio", avatar: "https://picsum.photos/seed/fabio/100/100" },
+  { text: "Melhor investimento que fiz esse mês, sem dúvidas.", name: "João", avatar: "https://picsum.photos/seed/joao/100/100" },
+  { text: "Alguém viu o vídeo novo? Quase caí da cadeira kkkk", name: "Ricardo", avatar: "https://picsum.photos/seed/ricardo/100/100" },
+  { text: "O VIP é outro nível, o Insta não chega nem perto.", name: "André", avatar: "https://picsum.photos/seed/andre/100/100" },
+  { text: "Vale cada centavo, as fotos são perfeitas.", name: "Bruno", avatar: "https://picsum.photos/seed/bruno/100/100" },
+  { text: "Não acredito que demorei tanto pra entrar.", name: "Carlos", avatar: "https://picsum.photos/seed/carlos/100/100" },
+  { text: "A exclusividade aqui é real, nada de censura.", name: "Daniel", avatar: "https://picsum.photos/seed/daniel/100/100" },
+  { text: "Fiquei de queixo caído com a última atualização.", name: "Eduardo", avatar: "https://picsum.photos/seed/eduardo/100/100" },
+  { text: "O suporte no privado é top, ela responde mesmo!", name: "Felipe", avatar: "https://picsum.photos/seed/felipe/100/100" },
+  { text: "Gente, o que foi aquilo que ela postou agora pouco? 🔥", name: "Gabriel", avatar: "https://picsum.photos/seed/gabriel/100/100" },
+  { text: "Tô viciado em olhar esse grupo todo dia.", name: "Henrique", avatar: "https://picsum.photos/seed/henrique/100/100" },
+  { text: "Privacidade total e conteúdo de qualidade.", name: "Igor", avatar: "https://picsum.photos/seed/igor/100/100" },
+  { text: "Já vi muita coisa por aí, mas esse VIP é diferenciado.", name: "Jorge", avatar: "https://picsum.photos/seed/jorge/100/100" },
+  { text: "A curiosidade me matou e agora não quero mais sair.", name: "Leonardo", avatar: "https://picsum.photos/seed/leonardo/100/100" },
+  { text: "Simplesmente impecável, recomendo pra todo mundo.", name: "Marcelo", avatar: "https://picsum.photos/seed/marcelo/100/100" },
+  { text: "O vídeo de 10 minutos... sem palavras.", name: "Nelson", avatar: "https://picsum.photos/seed/nelson/100/100" },
+  { text: "Melhor que qualquer outro site que já assinei.", name: "Otávio", avatar: "https://picsum.photos/seed/otavio/100/100" },
+  { text: "Ela é muito atenciosa no chat, amei.", name: "Paulo", avatar: "https://picsum.photos/seed/paulo/100/100" },
+  { text: "Conteúdo raiz, do jeito que a gente gosta.", name: "Rafael", avatar: "https://picsum.photos/seed/rafael/100/100" },
+  { text: "Cada foto é um flash, literalmente kkkk", name: "Samuel", avatar: "https://picsum.photos/seed/samuel/100/100" },
+  { text: "Não espalhem muito senão ela fecha o grupo!", name: "Tiago", avatar: "https://picsum.photos/seed/tiago/100/100" },
+  { text: "O bônus de boas-vindas já valeu o preço.", name: "Victor", avatar: "https://picsum.photos/seed/victor/100/100" },
+  { text: "Tô aqui há 3 meses e cada dia melhora.", name: "Wagner", avatar: "https://picsum.photos/seed/wagner/100/100" },
+  { text: "Privado de verdade, nada de enrolação.", name: "Xavier", avatar: "https://picsum.photos/seed/xavier/100/100" },
+  { text: "As prévias do Insta não mostram nem 1% do que tem aqui.", name: "Yuri", avatar: "https://picsum.photos/seed/yuri/100/100" },
+  { text: "Minha namorada nem sonha que eu tô aqui kkkk", name: "Zeca", avatar: "https://picsum.photos/seed/zeca/100/100" },
+  { text: "O conteúdo é tão bom que nem parece real.", name: "Adriano", avatar: "https://picsum.photos/seed/adriano/100/100" },
+  { text: "A qualidade dos vídeos em 4K é absurda.", name: "Bernardo", avatar: "https://picsum.photos/seed/bernardo/100/100" },
+  { text: "Sempre tem coisa nova, nunca fica parado.", name: "Caio", avatar: "https://picsum.photos/seed/caio/100/100" },
+  { text: "Valeu a pena cada segundo de espera.", name: "Diogo", avatar: "https://picsum.photos/seed/diogo/100/100" },
+  { text: "O grupo mais quente que já participei.", name: "Elias", avatar: "https://picsum.photos/seed/elias/100/100" },
+  { text: "Ela se supera a cada postagem, incrível.", name: "Fernando", avatar: "https://picsum.photos/seed/fernando/100/100" },
+  { text: "Se você tá na dúvida, só entra. Não vai se arrepender.", name: "Guilherme", avatar: "https://picsum.photos/seed/guilherme/100/100" },
+  { text: "O acesso foi liberado na hora, muito rápido.", name: "Hugo", avatar: "https://picsum.photos/seed/hugo/100/100" },
+  { text: "Tô recomendando pros parças tudo.", name: "Ítalo", avatar: "https://picsum.photos/seed/italo/100/100" },
+  { text: "O que acontece no VIP, fica no VIP 🤫", name: "Jonas", avatar: "https://picsum.photos/seed/jonas/100/100" },
+  { text: "A última foto me deixou sem dormir kkkk", name: "Kleber", avatar: "https://picsum.photos/seed/kleber/100/100" },
+  { text: "Conteúdo autêntico e sem filtros, amei.", name: "Lucas", avatar: "https://picsum.photos/seed/lucas/100/100" },
+  { text: "O preço tá muito baixo pra qualidade que entrega.", name: "Murilo", avatar: "https://picsum.photos/seed/murilo/100/100" },
+  { text: "Já garanti meu acesso vitalício, não perco por nada.", name: "Nicolas", avatar: "https://picsum.photos/seed/nicolas/100/100" },
+  { text: "Simplesmente a melhor do Brasil no momento.", name: "Orlando", avatar: "https://picsum.photos/seed/orlando/100/100" },
+  { text: "Obrigado por esse conteúdo maravilhoso!", name: "Pedro", avatar: "https://picsum.photos/seed/pedro/100/100" },
+  { text: "A cada atualização eu fico mais surpreso.", name: "Quim", avatar: "https://picsum.photos/seed/quim/100/100" },
+  { text: "Não tem como não viciar nesse conteúdo.", name: "Rodrigo", avatar: "https://picsum.photos/seed/rodrigo/100/100" },
+  { text: "O VIP é a minha parte favorita do dia.", name: "Sandro", avatar: "https://picsum.photos/seed/sandro/100/100" }
 ];
 
 const MALE_NAMES = [
@@ -45,6 +87,83 @@ const Benefit = ({ icon: Icon, text }: { icon: any, text: string }) => (
   </div>
 );
 
+const LiveViewers = () => {
+  const [count, setCount] = useState(1842);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(prev => {
+        const change = Math.floor(Math.random() * 21) - 10; // -10 to +10
+        const next = prev + change;
+        if (next < 1300) return 1300;
+        if (next > 2500) return 2500;
+        return next;
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center gap-2 mb-4 text-zinc-400 font-bold text-sm uppercase tracking-wider">
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+      </span>
+      Mais de <span className="text-white tabular-nums">{count.toLocaleString()}</span> estão vendo isso agora
+    </div>
+  );
+};
+
+const ScrollingComments = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex(prev => (prev + 1) % COMMENTS.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentComment = COMMENTS[index];
+
+  return (
+    <div className="w-full max-w-xl mx-auto px-6 py-8 mt-4">
+      <div className="relative h-32 flex items-center justify-center overflow-hidden bg-zinc-900/30 rounded-2xl border border-zinc-800/50 backdrop-blur-sm">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center text-center px-8"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <img 
+                src={currentComment.avatar} 
+                alt={currentComment.name}
+                className="w-10 h-10 rounded-full border border-emerald-500/30 object-cover"
+                referrerPolicy="no-referrer"
+              />
+              <div className="text-left">
+                <p className="text-sm font-bold text-white leading-none">{currentComment.name}</p>
+                <div className="flex gap-0.5 mt-1 text-emerald-500">
+                  {[...Array(5)].map((_, i) => (
+                    <CheckCircle2 key={i} size={10} fill="currentColor" />
+                  ))}
+                </div>
+              </div>
+            </div>
+            <p className="text-zinc-200 font-medium italic text-base leading-tight">
+              "{currentComment.text}"
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -62,7 +181,8 @@ const Carousel = () => {
   }, [nextSlide]);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto px-4 py-12 group">
+    <div className="relative w-full max-w-4xl mx-auto px-4 py-8 group">
+      <LiveViewers />
       <div className="relative aspect-[3/4] md:aspect-video rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
         <AnimatePresence mode="wait">
           <motion.img
@@ -105,6 +225,25 @@ const Carousel = () => {
               }`}
             />
           ))}
+        </div>
+      </div>
+      <ScrollingComments />
+
+      {/* Audio Player */}
+      <div className="mt-8 flex flex-col items-center">
+        <p className="text-zinc-400 font-medium mb-4 flex items-center justify-center gap-2 text-lg">
+          Quer ouvir minha voz amor? 🙈
+        </p>
+        <div className="w-full max-w-md bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800 backdrop-blur-sm shadow-xl">
+          <audio 
+            src="https://files.catbox.moe/i411lu.mp3" 
+            autoPlay 
+            loop 
+            controls 
+            className="w-full h-10 accent-emerald-500"
+          >
+            Seu navegador não suporta o elemento de áudio.
+          </audio>
         </div>
       </div>
     </div>
@@ -244,7 +383,7 @@ export default function App() {
           </div>
 
           <motion.a
-            href="#"
+            href="https://linkpriv.app/NjgyMDE="
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center justify-center w-full py-6 px-8 rounded-2xl bg-emerald-500 text-black font-black text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
