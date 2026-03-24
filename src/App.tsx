@@ -21,6 +21,15 @@ const IMAGES = [
   "https://i.postimg.cc/wB3RdSQ5/image_(9).jpg"
 ];
 
+const GALLERY_IMAGES = [
+  "https://i.postimg.cc/qqTxwxKK/20260324072815.png",
+  "https://i.postimg.cc/26vxnKVg/20260324072853.png",
+  "https://i.postimg.cc/Y9gxQsvB/20260324072922.png",
+  "https://i.postimg.cc/V6MFXVJc/20260324072939.png",
+  "https://i.postimg.cc/k48yWpBh/20260324073000.png",
+  "https://i.postimg.cc/7LjVGkYS/20260324073040.png"
+];
+
 const COMMENTS = [
   { text: "Mano, o conteúdo de hoje tá surreal... 😈", name: "Fábio", avatar: "https://picsum.photos/seed/fabio/100/100" },
   { text: "Melhor investimento que fiz esse mês, sem dúvidas.", name: "João", avatar: "https://picsum.photos/seed/joao/100/100" },
@@ -195,6 +204,72 @@ const VoiceMessage = () => {
   );
 };
 
+const GalleryCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % GALLERY_IMAGES.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 3500);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
+
+  return (
+    <div className="mt-12 w-full max-w-lg mx-auto px-4 group">
+      <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border-2 border-zinc-800 bg-zinc-900 shadow-2xl">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentIndex}
+            src={GALLERY_IMAGES[currentIndex]}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.5 }}
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </AnimatePresence>
+
+        {/* Navigation */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          <ChevronRight size={20} />
+        </button>
+
+        {/* Indicators */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+          {GALLERY_IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-1 rounded-full transition-all ${
+                idx === currentIndex ? "w-6 bg-emerald-500" : "w-1.5 bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+      <p className="text-center text-zinc-500 text-[10px] uppercase tracking-[0.2em] mt-4 font-bold">
+        Galeria Exclusiva • Atualizada
+      </p>
+    </div>
+  );
+};
+
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -260,6 +335,7 @@ const Carousel = () => {
       </div>
       <ScrollingComments />
       <VoiceMessage />
+      <GalleryCarousel />
     </div>
   );
 };
