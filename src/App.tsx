@@ -288,6 +288,17 @@ const Carousel = () => {
 
   return (
     <div className="relative w-full max-w-4xl mx-auto px-4 py-4 sm:py-8 group">
+      {/* User Uploaded Video - Replace src with your direct video link */}
+      <div className="w-full max-w-lg mx-auto mb-6 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
+        <video 
+          src="https://www.dropbox.com/scl/fi/0zyyed6s43r67x1xkw8zy/lv_0_20260326151623.mp4?rlkey=k34a1va9ju5gi2rtrcl1b1jqo&st=g18fcj04&raw=1" 
+          controls 
+          autoPlay 
+          muted 
+          loop 
+          className="w-full h-auto"
+        />
+      </div>
       <LiveViewers />
       <div className="relative aspect-[4/5] sm:aspect-video rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
         <AnimatePresence mode="wait">
