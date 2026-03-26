@@ -415,6 +415,54 @@ const PurchaseNotification = () => {
   );
 };
 
+const PRICING_IMAGES = [
+  "https://i.postimg.cc/R06ZSLCJ/20260326154819.png",
+  "https://i.postimg.cc/TPL3dJ2f/20260326154912.png",
+  "https://i.postimg.cc/zvgdqB3F/20260326163029.png"
+];
+
+const PricingCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % PRICING_IMAGES.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative w-full max-w-sm mx-auto mb-10 group">
+      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentIndex}
+            src={PRICING_IMAGES[currentIndex]}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </AnimatePresence>
+
+        {/* Indicators */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+          {PRICING_IMAGES.map((_, idx) => (
+            <div
+              key={idx}
+              className={`h-1 rounded-full transition-all ${
+                idx === currentIndex ? "w-6 bg-emerald-500" : "w-1.5 bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-emerald-500/30">
@@ -496,26 +544,7 @@ export default function App() {
       {/* Pricing & CTA */}
       <section className="pb-24 sm:pb-32 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 mx-auto">
-            <img 
-              src="https://i.postimg.cc/R06ZSLCJ/20260326154819.png" 
-              alt="Preview 1" 
-              className="w-full h-auto rounded-2xl border border-zinc-800 shadow-2xl object-cover aspect-[4/5]"
-              referrerPolicy="no-referrer"
-            />
-            <img 
-              src="https://i.postimg.cc/TPL3dJ2f/20260326154912.png" 
-              alt="Preview 2" 
-              className="w-full h-auto rounded-2xl border border-zinc-800 shadow-2xl object-cover aspect-[4/5]"
-              referrerPolicy="no-referrer"
-            />
-            <img 
-              src="https://i.postimg.cc/d0kVsjQk/IMG-20260326-154501-746.jpg" 
-              alt="Preview 3" 
-              className="w-full h-auto rounded-2xl border border-zinc-800 shadow-2xl object-cover aspect-[4/5]"
-              referrerPolicy="no-referrer"
-            />
-          </div>
+          <PricingCarousel />
 
           <div className="max-w-md mx-auto">
             <div className="mb-8">
