@@ -288,6 +288,16 @@ const Carousel = () => {
 
   return (
     <div className="relative w-full max-w-4xl mx-auto px-4 py-4 sm:py-8 group">
+      {/* Video Header Text */}
+      <div className="text-center mb-6">
+        <h2 className="text-emerald-400 font-bold text-xl sm:text-2xl tracking-tight drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
+          Dúvido você ver isso sem 💦
+        </h2>
+        <p className="text-zinc-500 text-[10px] sm:text-xs uppercase tracking-[0.2em] mt-2 font-bold">
+          aperte no 🔊 para ter uma experiência melhor.
+        </p>
+      </div>
+
       {/* User Uploaded Video - Replace src with your direct video link */}
       <div className="w-full max-w-lg mx-auto mb-6 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
         <video 
@@ -445,6 +455,17 @@ export default function App() {
             <Benefit icon={CheckCircle2} text="Fotos e vídeos que não vão pro Insta" />
             <Benefit icon={Gift} text="Atualizações frequentes" />
           </div>
+
+          <div className="mt-12 sm:mt-16 max-w-sm mx-auto">
+            <video 
+              src="https://dl.dropboxusercontent.com/scl/fi/dhiilcppf21sbvmhbuawn/lv_0_20260326155910.mp4?rlkey=swxftxlcor4ef6ttb8s5umzlt&st=g4stjw3d"
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="w-full rounded-3xl border border-zinc-800 shadow-2xl"
+            />
+          </div>
         </div>
       </section>
 
@@ -474,30 +495,53 @@ export default function App() {
 
       {/* Pricing & CTA */}
       <section className="pb-24 sm:pb-32 px-6 text-center">
-        <div className="max-w-md mx-auto">
-          <div className="mb-8">
-            <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
-            <div className="text-4xl sm:text-5xl font-black mt-2">
-              <span className="text-zinc-400 text-xl sm:text-2xl font-medium align-top mr-1">por apenas:</span>
-              <span className="text-emerald-500">R$27,90</span>
-            </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 mx-auto">
+            <img 
+              src="https://i.postimg.cc/R06ZSLCJ/20260326154819.png" 
+              alt="Preview 1" 
+              className="w-full h-auto rounded-2xl border border-zinc-800 shadow-2xl object-cover aspect-[4/5]"
+              referrerPolicy="no-referrer"
+            />
+            <img 
+              src="https://i.postimg.cc/TPL3dJ2f/20260326154912.png" 
+              alt="Preview 2" 
+              className="w-full h-auto rounded-2xl border border-zinc-800 shadow-2xl object-cover aspect-[4/5]"
+              referrerPolicy="no-referrer"
+            />
+            <img 
+              src="https://i.postimg.cc/d0kVsjQk/IMG-20260326-154501-746.jpg" 
+              alt="Preview 3" 
+              className="w-full h-auto rounded-2xl border border-zinc-800 shadow-2xl object-cover aspect-[4/5]"
+              referrerPolicy="no-referrer"
+            />
           </div>
 
-          <motion.a
-            href="https://linkpriv.app/NjgyMDE="
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              ENTRAR AGORA NO PRIVADO 😈
-              <ArrowRight className="transition-transform group-hover:translate-x-1" />
-            </span>
-          </motion.a>
-          
-          <p className="mt-6 text-zinc-500 text-sm">
-            Pagamento único. Acesso imediato.
-          </p>
+          <div className="max-w-md mx-auto">
+            <div className="mb-8">
+              <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
+              <div className="text-4xl sm:text-5xl font-black mt-2">
+                <span className="text-zinc-400 text-xl sm:text-2xl font-medium align-top mr-1">por apenas:</span>
+                <span className="text-emerald-500">R$27,90</span>
+              </div>
+            </div>
+
+            <motion.a
+              href="https://linkpriv.app/NjgyMDE="
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                ENTRAR AGORA NO PRIVADO 😈
+                <ArrowRight className="transition-transform group-hover:translate-x-1" />
+              </span>
+            </motion.a>
+            
+            <p className="mt-6 text-zinc-500 text-sm">
+              Pagamento único. Acesso imediato.
+            </p>
+          </div>
         </div>
       </section>
 
