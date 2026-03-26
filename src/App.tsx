@@ -194,7 +194,7 @@ const VoiceMessage = () => {
           <audio 
             controls 
             className="w-full invert opacity-80 hover:opacity-100 transition-opacity duration-300"
-            src="https://drive.google.com/uc?export=download&id=1_n2dfv1NtJ3IwkAbrftk_bXI2e4AhcVi"
+            src="https://dl.dropboxusercontent.com/scl/fi/951zp009qdqip2hdcna37/VID_20260326_145034_524.aac?rlkey=xvlthyxkufq3juiivm1z4on58&st=rkxdjh9p"
           >
             Seu navegador não suporta o elemento de áudio.
           </audio>
