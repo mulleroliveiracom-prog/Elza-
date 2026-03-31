@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight, ShieldCheck, Lock, HelpCircle, ChevronDown } from 'lucide-react';
 
 const IMAGES = [
   "https://i.postimg.cc/7LbJypn0/30da1dc4_d44c_4cc2_a88b_c9db8fa87f54.jpg",
@@ -463,6 +463,42 @@ const PricingCarousel = () => {
   );
 };
 
+const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border-b border-zinc-800">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-6 flex items-center justify-between text-left group"
+      >
+        <span className="text-lg font-bold text-zinc-200 group-hover:text-emerald-400 transition-colors">
+          {question}
+        </span>
+        <ChevronDown 
+          size={20} 
+          className={`text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180 text-emerald-500' : ''}`} 
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <p className="pb-6 text-zinc-400 leading-relaxed">
+              {answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-emerald-500/30">
@@ -551,7 +587,7 @@ export default function App() {
               <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
               <div className="text-4xl sm:text-5xl font-black mt-2">
                 <span className="text-zinc-400 text-xl sm:text-2xl font-medium align-top mr-1">por apenas:</span>
-                <span className="text-emerald-500">R$27,90</span>
+                <span className="text-emerald-500">R$47,90</span>
               </div>
             </div>
 
@@ -570,6 +606,68 @@ export default function App() {
             <p className="mt-6 text-zinc-500 text-sm">
               Pagamento único. Acesso imediato.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-12 sm:py-20 px-6 bg-zinc-950/50">
+        <div className="max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <HelpCircle className="text-emerald-500" size={32} />
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">Dúvidas Frequentes</h2>
+          </div>
+          
+          <div className="space-y-2">
+            <FAQItem 
+              question="Como recebo o acesso?" 
+              answer="O acesso é enviado imediatamente para o seu e-mail após a confirmação do pagamento. Se pagar via PIX, o acesso é liberado em menos de 1 minuto." 
+            />
+            <FAQItem 
+              question="O conteúdo é atualizado?" 
+              answer="Sim! Toda semana postamos novos vídeos e fotos exclusivas que você não encontrará em nenhum outro lugar." 
+            />
+            <FAQItem 
+              question="O pagamento é seguro?" 
+              answer="Totalmente. Utilizamos as plataformas de pagamento mais seguras do Brasil, com criptografia de ponta a ponta. Seus dados estão 100% protegidos." 
+            />
+            <FAQItem 
+              question="Aparece o nome do grupo na fatura?" 
+              answer="Não. A cobrança aparece de forma discreta na sua fatura, garantindo total privacidade sobre a sua assinatura." 
+            />
+            <FAQItem 
+              question="Posso cancelar quando quiser?" 
+              answer="Sim, o acesso é único ou por assinatura conforme o plano escolhido, sem letras miúdas ou fidelidade." 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges */}
+      <section className="py-12 px-6">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4">
+              <ShieldCheck size={28} />
+            </div>
+            <h3 className="font-bold text-lg mb-2">Garantia de 7 Dias</h3>
+            <p className="text-zinc-500 text-sm">Satisfação garantida ou seu dinheiro de volta sem perguntas.</p>
+          </div>
+          
+          <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4">
+              <Lock size={28} />
+            </div>
+            <h3 className="font-bold text-lg mb-2">Compra 100% Segura</h3>
+            <p className="text-zinc-500 text-sm">Ambiente criptografado e seguro para todas as transações.</p>
+          </div>
+
+          <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4">
+              <CheckCircle2 size={28} />
+            </div>
+            <h3 className="font-bold text-lg mb-2">Acesso Imediato</h3>
+            <p className="text-zinc-500 text-sm">Receba seus dados de acesso no e-mail logo após o pagamento.</p>
           </div>
         </div>
       </section>
