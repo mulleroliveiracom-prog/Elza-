@@ -3,32 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, ChevronLeft, ChevronRight, ShieldCheck, Lock, HelpCircle, ChevronDown } from 'lucide-react';
-
-const IMAGES = [
-  "https://i.postimg.cc/7LbJypn0/30da1dc4_d44c_4cc2_a88b_c9db8fa87f54.jpg",
-  "https://i.postimg.cc/cJjg1XFT/62fd4d6a_c006_4720_8d61_7107e9b7892b.jpg",
-  "https://i.postimg.cc/CKtBMmvY/885db510_cea1_43b9_87a6_ee1e4dd18864.jpg",
-  "https://i.postimg.cc/xd7Jjts2/bdec06c6_bf26_4076_831d_98adc740a2c3.jpg",
-  "https://i.postimg.cc/8CsfVqmR/c23ec8e2_de20_46fb_b092_a2a5b8f270d1_(1).jpg",
-  "https://i.postimg.cc/wBPyx0wW/f65a06fc_78c3_462a_8721_32fca3fddf58_(1).jpg",
-  "https://i.postimg.cc/7LcGPmK9/fa33c8ba_c6b5_452d_8647_32a90909d1a4.jpg",
-  "https://i.postimg.cc/5tjQMZSw/image_(14).jpg",
-  "https://i.postimg.cc/Gp9T1Zxt/image_(21).jpg",
-  "https://i.postimg.cc/43M74BWB/image_(8).jpg",
-  "https://i.postimg.cc/wB3RdSQ5/image_(9).jpg"
-];
-
-const GALLERY_IMAGES = [
-  "https://i.postimg.cc/qqTxwxKK/20260324072815.png",
-  "https://i.postimg.cc/26vxnKVg/20260324072853.png",
-  "https://i.postimg.cc/Y9gxQsvB/20260324072922.png",
-  "https://i.postimg.cc/V6MFXVJc/20260324072939.png",
-  "https://i.postimg.cc/k48yWpBh/20260324073000.png",
-  "https://i.postimg.cc/7LjVGkYS/20260324073040.png"
-];
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag } from 'lucide-react';
 
 const COMMENTS = [
   { text: "Mano, o conteúdo de hoje tá surreal... 😈", name: "Fábio", avatar: "https://picsum.photos/seed/fabio/100/100" },
@@ -204,88 +181,7 @@ const VoiceMessage = () => {
   );
 };
 
-const GalleryCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % GALLERY_IMAGES.length);
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 3500);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
-
-  return (
-    <div className="mt-12 w-full max-w-lg mx-auto px-4 group">
-      <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border-2 border-zinc-800 bg-zinc-900 shadow-2xl">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentIndex}
-            src={GALLERY_IMAGES[currentIndex]}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.5 }}
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-        </AnimatePresence>
-
-        {/* Navigation */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
-        >
-          <ChevronRight size={20} />
-        </button>
-
-        {/* Indicators */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-          {GALLERY_IMAGES.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-1 rounded-full transition-all ${
-                idx === currentIndex ? "w-6 bg-emerald-500" : "w-1.5 bg-white/30"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-      <p className="text-center text-zinc-500 text-[10px] uppercase tracking-[0.2em] mt-4 font-bold">
-        Galeria Exclusiva • Atualizada
-      </p>
-    </div>
-  );
-};
-
-const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % IMAGES.length);
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + IMAGES.length) % IMAGES.length);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 4000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
-
+const MainContent = () => {
   return (
     <div className="relative w-full max-w-4xl mx-auto px-4 py-4 sm:py-8 group">
       {/* Video Header Text */}
@@ -310,53 +206,9 @@ const Carousel = () => {
         />
       </div>
       <LiveViewers />
-      <div className="relative aspect-[4/5] sm:aspect-video rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentIndex}
-            src={IMAGES[currentIndex]}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-        </AnimatePresence>
-        
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-        {/* Navigation Arrows - Visible on mobile for better UX */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
-        >
-          <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white backdrop-blur-md opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-emerald-500 hover:text-black"
-        >
-          <ChevronRight size={20} className="sm:w-6 sm:h-6" />
-        </button>
-
-        {/* Indicators */}
-        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2">
-          {IMAGES.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-1 sm:h-1.5 rounded-full transition-all ${
-                idx === currentIndex ? "w-6 sm:w-8 bg-emerald-500" : "w-1.5 sm:w-2 bg-white/30"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
+      
       <ScrollingComments />
       <VoiceMessage />
-      <GalleryCarousel />
     </div>
   );
 };
@@ -415,90 +267,6 @@ const PurchaseNotification = () => {
   );
 };
 
-const PRICING_IMAGES = [
-  "https://i.postimg.cc/R06ZSLCJ/20260326154819.png",
-  "https://i.postimg.cc/TPL3dJ2f/20260326154912.png",
-  "https://i.postimg.cc/zvgdqB3F/20260326163029.png"
-];
-
-const PricingCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % PRICING_IMAGES.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative w-full max-w-sm mx-auto mb-10 group">
-      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentIndex}
-            src={PRICING_IMAGES[currentIndex]}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-        </AnimatePresence>
-
-        {/* Indicators */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-          {PRICING_IMAGES.map((_, idx) => (
-            <div
-              key={idx}
-              className={`h-1 rounded-full transition-all ${
-                idx === currentIndex ? "w-6 bg-emerald-500" : "w-1.5 bg-white/30"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="border-b border-zinc-800">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex items-center justify-between text-left group"
-      >
-        <span className="text-lg font-bold text-zinc-200 group-hover:text-emerald-400 transition-colors">
-          {question}
-        </span>
-        <ChevronDown 
-          size={20} 
-          className={`text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180 text-emerald-500' : ''}`} 
-        />
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <p className="pb-6 text-zinc-400 leading-relaxed">
-              {answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-emerald-500/30">
@@ -524,8 +292,8 @@ export default function App() {
         </div>
       </header>
 
-      {/* Carousel Section */}
-      <Carousel />
+      {/* Main Content Section */}
+      <MainContent />
 
       {/* Benefits Section */}
       <section className="py-12 sm:py-20 px-6 bg-zinc-950/50">
@@ -580,8 +348,6 @@ export default function App() {
       {/* Pricing & CTA */}
       <section className="pb-24 sm:pb-32 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-          <PricingCarousel />
-
           <div className="max-w-md mx-auto">
             <div className="mb-8">
               <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
@@ -606,68 +372,6 @@ export default function App() {
             <p className="mt-6 text-zinc-500 text-sm">
               Pagamento único. Acesso imediato.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-12 sm:py-20 px-6 bg-zinc-950/50">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-center gap-3 mb-12">
-            <HelpCircle className="text-emerald-500" size={32} />
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">Dúvidas Frequentes</h2>
-          </div>
-          
-          <div className="space-y-2">
-            <FAQItem 
-              question="Como recebo o acesso?" 
-              answer="O acesso é enviado imediatamente para o seu e-mail após a confirmação do pagamento. Se pagar via PIX, o acesso é liberado em menos de 1 minuto." 
-            />
-            <FAQItem 
-              question="O conteúdo é atualizado?" 
-              answer="Sim! Toda semana postamos novos vídeos e fotos exclusivas que você não encontrará em nenhum outro lugar." 
-            />
-            <FAQItem 
-              question="O pagamento é seguro?" 
-              answer="Totalmente. Utilizamos as plataformas de pagamento mais seguras do Brasil, com criptografia de ponta a ponta. Seus dados estão 100% protegidos." 
-            />
-            <FAQItem 
-              question="Aparece o nome do grupo na fatura?" 
-              answer="Não. A cobrança aparece de forma discreta na sua fatura, garantindo total privacidade sobre a sua assinatura." 
-            />
-            <FAQItem 
-              question="Posso cancelar quando quiser?" 
-              answer="Sim, o acesso é único ou por assinatura conforme o plano escolhido, sem letras miúdas ou fidelidade." 
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Badges */}
-      <section className="py-12 px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800">
-            <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4">
-              <ShieldCheck size={28} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Garantia de 7 Dias</h3>
-            <p className="text-zinc-500 text-sm">Satisfação garantida ou seu dinheiro de volta sem perguntas.</p>
-          </div>
-          
-          <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800">
-            <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4">
-              <Lock size={28} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Compra 100% Segura</h3>
-            <p className="text-zinc-500 text-sm">Ambiente criptografado e seguro para todas as transações.</p>
-          </div>
-
-          <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800">
-            <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4">
-              <CheckCircle2 size={28} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Acesso Imediato</h3>
-            <p className="text-zinc-500 text-sm">Receba seus dados de acesso no e-mail logo após o pagamento.</p>
           </div>
         </div>
       </section>
