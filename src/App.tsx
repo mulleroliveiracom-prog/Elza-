@@ -587,7 +587,7 @@ export default function App() {
               <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
               <div className="text-4xl sm:text-5xl font-black mt-2">
                 <span className="text-zinc-400 text-xl sm:text-2xl font-medium align-top mr-1">por apenas:</span>
-                <span className="text-emerald-500">R$47,90</span>
+                <span className="text-emerald-500">R$29,99</span>
               </div>
             </div>
 
