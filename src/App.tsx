@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, HelpCircle, ShieldCheck, Clock } from 'lucide-react';
 
 const COMMENTS = [
   { text: "Mano, o conteúdo de hoje tá surreal... 😈", name: "Fábio", avatar: "https://picsum.photos/seed/fabio/100/100" },
@@ -184,27 +184,6 @@ const VoiceMessage = () => {
 const MainContent = () => {
   return (
     <div className="relative w-full max-w-4xl mx-auto px-4 py-4 sm:py-8 group">
-      {/* Video Header Text */}
-      <div className="text-center mb-6">
-        <h2 className="text-emerald-400 font-bold text-xl sm:text-2xl tracking-tight drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
-          Dúvido você ver isso sem 💦
-        </h2>
-        <p className="text-zinc-500 text-[10px] sm:text-xs uppercase tracking-[0.2em] mt-2 font-bold">
-          aperte no 🔊 para ter uma experiência melhor.
-        </p>
-      </div>
-
-      {/* User Uploaded Video - Replace src with your direct video link */}
-      <div className="w-full max-w-lg mx-auto mb-6 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
-        <video 
-          src="https://www.dropbox.com/scl/fi/0zyyed6s43r67x1xkw8zy/lv_0_20260326151623.mp4?rlkey=k34a1va9ju5gi2rtrcl1b1jqo&st=g18fcj04&raw=1" 
-          controls 
-          autoPlay 
-          muted 
-          loop 
-          className="w-full h-auto"
-        />
-      </div>
       <LiveViewers />
       
       <ScrollingComments />
@@ -310,7 +289,7 @@ export default function App() {
 
           <div className="mt-12 sm:mt-16 max-w-sm mx-auto">
             <video 
-              src="https://dl.dropboxusercontent.com/scl/fi/dhiilcppf21sbvmhbuawn/lv_0_20260326155910.mp4?rlkey=swxftxlcor4ef6ttb8s5umzlt&st=g4stjw3d"
+              src="https://www.dropbox.com/scl/fi/5vjwgusu97lasla6a08h3/VID_20260410_171644_355.mp4?rlkey=cgx65huimo7o6v5nn2f38kuex&st=luuv635j&raw=1"
               autoPlay 
               muted 
               loop 
@@ -353,12 +332,12 @@ export default function App() {
               <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
               <div className="text-4xl sm:text-5xl font-black mt-2">
                 <span className="text-zinc-400 text-xl sm:text-2xl font-medium align-top mr-1">por apenas:</span>
-                <span className="text-emerald-500">R$29,99</span>
+                <span className="text-emerald-500">R$ 19,99</span>
               </div>
             </div>
 
             <motion.a
-              href="https://linkpriv.com/e06df740-1521-434f-bbaf-f5a1e9c749a0"
+              href="https://linkpriv.app/NjgyMDE="
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
@@ -372,6 +351,57 @@ export default function App() {
             <p className="mt-6 text-zinc-500 text-sm">
               Pagamento único. Acesso imediato.
             </p>
+
+            {/* New Sections */}
+            <div className="mt-16 space-y-12 text-left">
+              {/* FAQ Section */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-2 text-emerald-500 mb-4">
+                  <HelpCircle size={24} />
+                  <h3 className="text-xl font-bold uppercase tracking-wider">Dúvidas Frequentes</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                    <p className="font-bold text-white mb-1">Como recebo o acesso?</p>
+                    <p className="text-zinc-400 text-sm">O link de acesso é enviado instantaneamente para o seu e-mail após a confirmação do pagamento.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                    <p className="font-bold text-white mb-1">O conteúdo é atualizado?</p>
+                    <p className="text-zinc-400 text-sm">Sim! Temos postagens novas e exclusivas toda semana para manter o VIP sempre quente.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                    <p className="font-bold text-white mb-1">A compra é discreta?</p>
+                    <p className="text-zinc-400 text-sm">Totalmente. A cobrança no seu cartão aparecerá com um nome genérico, garantindo sua privacidade.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Guarantee Section */}
+              <div className="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 flex flex-col sm:flex-row items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500 flex-shrink-0">
+                  <ShieldCheck size={32} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-1">Garantia de Acesso</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    Sua satisfação e segurança são nossa prioridade. Garantimos a entrega de todo o conteúdo prometido ou devolvemos seu investimento.
+                  </p>
+                </div>
+              </div>
+
+              {/* Updates Section */}
+              <div className="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 flex flex-col sm:flex-row items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 flex-shrink-0">
+                  <Clock size={32} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-1">Atualizações Vitalícias</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    Ao entrar hoje, você garante acesso a todas as fotos e vídeos futuros sem precisar pagar nada a mais por isso.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
