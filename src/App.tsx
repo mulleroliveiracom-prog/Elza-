@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, HelpCircle, ShieldCheck, Clock, Send } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, HelpCircle, ShieldCheck, Clock, Send, Lock } from 'lucide-react';
 
 const COMMENTS = [
   { text: "Mano, o conteúdo de hoje tá surreal... 😈", name: "Fábio", avatar: "https://picsum.photos/seed/fabio/100/100" },
@@ -256,6 +256,18 @@ export default function App() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-radial from-emerald-500/10 to-transparent opacity-50 pointer-events-none" />
         
         <div className="max-w-3xl mx-auto text-center relative z-10">
+          {/* Top Video Showcase */}
+          <div className="mb-8 max-w-sm mx-auto">
+            <video 
+              src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              playsInline={true}
+              className="w-full rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl aspect-[9/16] object-cover"
+            />
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -270,6 +282,32 @@ export default function App() {
           </motion.div>
         </div>
       </header>
+
+      {/* Exclusive Gallery Section */}
+      <section className="py-6 sm:py-10 px-6 max-w-4xl mx-auto">
+        <h2 className="text-lg sm:text-xl font-bold mb-6 text-center uppercase tracking-widest text-zinc-500 flex items-center justify-center gap-2">
+          <Lock size={18} className="text-emerald-500" />
+          Galeria Exclusiva
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-900 bg-zinc-950 group">
+              <img 
+                src={`https://picsum.photos/300/400?random=${i + 15}`} 
+                alt="Galeria Exclusiva" 
+                className="w-full h-full object-cover blur-xl opacity-40 scale-105 pointer-events-none select-none transition-all duration-300 group-hover:blur-lg"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50">
+                <div className="p-3 rounded-full bg-zinc-900/95 border border-zinc-800 shadow-xl text-zinc-300">
+                  <Lock size={20} className="sm:w-6 sm:h-6" />
+                </div>
+                <span className="mt-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-zinc-400">Exclusivo</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Main Content Section */}
       <MainContent />
@@ -335,23 +373,7 @@ export default function App() {
               className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)] cursor-pointer"
             >
               <span className="relative z-10 flex items-center gap-2">
-                LIBERAR MEU ACESSO AGORA 🤫
-                <ArrowRight className="transition-transform group-hover:translate-x-1" />
-              </span>
-            </motion.button>
-
-            <motion.button
-              onClick={() => {
-                const target = atob("aHR0cHM6Ly90Lm1lL0p1bGlhMzhib3Q=");
-                window.open(target, '_blank', 'noopener,noreferrer');
-              }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-4 inline-flex items-center justify-center w-full py-3.5 px-6 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500/20 font-bold text-base tracking-wide transition-all cursor-pointer"
-            >
-              <span className="flex items-center gap-2">
-                <Send size={18} />
-                Prévias do Telegram
+                🔓 Desbloquear Galeria Inédita - R$ 9,99
               </span>
             </motion.button>
             
@@ -377,8 +399,8 @@ export default function App() {
                     <p className="text-zinc-400 text-sm">Sim! Temos postagens novas e exclusivas toda semana para manter o VIP sempre quente.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
-                    <p className="font-bold text-white mb-1">A compra é discreta?</p>
-                    <p className="text-zinc-400 text-sm">Totalmente. A cobrança no seu cartão aparecerá com um nome genérico, garantindo sua privacidade.</p>
+                    <p className="font-bold text-white mb-1">A compra é segura?</p>
+                    <p className="text-zinc-400 text-sm">Totalmente. O pagamento é processado por uma plataforma 100% segura e seus dados são criptografados de ponta a ponta.</p>
                   </div>
                 </div>
               </div>
