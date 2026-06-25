@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, HelpCircle, ShieldCheck, Clock } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Flame, Gift, AlertTriangle, Users, ArrowRight, ShoppingBag, HelpCircle, ShieldCheck, Clock, Send } from 'lucide-react';
 
 const COMMENTS = [
   { text: "Mano, o conteúdo de hoje tá surreal... 😈", name: "Fábio", avatar: "https://picsum.photos/seed/fabio/100/100" },
@@ -286,17 +286,6 @@ export default function App() {
             <Benefit icon={CheckCircle2} text="Fotos e vídeos que não vão pro Insta" />
             <Benefit icon={Gift} text="Atualizações frequentes" />
           </div>
-
-          <div className="mt-12 sm:mt-16 max-w-sm mx-auto">
-            <video 
-              src="https://www.dropbox.com/scl/fi/5vjwgusu97lasla6a08h3/VID_20260410_171644_355.mp4?rlkey=cgx65huimo7o6v5nn2f38kuex&st=luuv635j&raw=1"
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              className="w-full rounded-3xl border border-zinc-800 shadow-2xl"
-            />
-          </div>
         </div>
       </section>
 
@@ -332,12 +321,12 @@ export default function App() {
               <span className="text-zinc-500 line-through text-lg sm:text-xl">De R$97,90</span>
               <div className="text-4xl sm:text-5xl font-black mt-2">
                 <span className="text-zinc-400 text-xl sm:text-2xl font-medium align-top mr-1">por apenas:</span>
-                <span className="text-emerald-500">R$ 19,99</span>
+                <span className="text-emerald-500">R$ 9,99</span>
               </div>
             </div>
 
             <motion.a
-              href="https://linkpriv.app/NjgyMDE="
+              href="https://paylume.fans/c/elza"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
@@ -345,6 +334,20 @@ export default function App() {
               <span className="relative z-10 flex items-center gap-2">
                 ENTRAR AGORA NO PRIVADO 😈
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
+              </span>
+            </motion.a>
+
+            <motion.a
+              href="https://t.me/Julia38bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="mt-4 inline-flex items-center justify-center w-full py-3.5 px-6 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500/20 font-bold text-base tracking-wide transition-all"
+            >
+              <span className="flex items-center gap-2">
+                <Send size={18} />
+                Prévias do Telegram
               </span>
             </motion.a>
             
