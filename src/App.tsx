@@ -262,10 +262,10 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-2xl sm:text-4xl md:text-6xl font-black tracking-tighter mb-4 sm:mb-6 bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent px-2 sm:px-4">
-              Você não deveria estar vendo isso… 😈
+              Acesso Restrito Liberado... 🤫
             </h1>
             <p className="text-base sm:text-xl md:text-2xl text-zinc-400 font-medium max-w-2xl mx-auto leading-relaxed px-4 sm:px-6">
-              Conteúdos exclusivos, sem censura, só pra quem entra no privado. Se você chegou até aqui… já sabe o que quer.
+              Bastidores exclusivos e sem filtros, apenas para o nosso grupo restrito. O que rola aqui dentro, fica aqui dentro.
             </p>
           </motion.div>
         </div>
@@ -281,9 +281,9 @@ export default function App() {
             Aqui dentro você vai encontrar:
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:gap-6">
-            <Benefit icon={Flame} text="Conteúdos +18 exclusivos" />
+            <Benefit icon={Flame} text="Acesso aos meus bastidores ocultos" />
             <Benefit icon={MessageCircle} text="Respostas diretas no privado" />
-            <Benefit icon={CheckCircle2} text="Fotos e vídeos que não vão pro Insta" />
+            <Benefit icon={CheckCircle2} text="Conteúdos inéditos e não listados" />
             <Benefit icon={Gift} text="Atualizações frequentes" />
           </div>
         </div>
@@ -325,31 +325,35 @@ export default function App() {
               </div>
             </div>
 
-            <motion.a
-              href="https://paylume.fans/c/elza"
+            <motion.button
+              onClick={() => {
+                const target = atob("aHR0cHM6Ly9wYXlsdW1lLmZhbnMvYy9lbHph");
+                window.location.href = target;
+              }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
+              className="group relative inline-flex items-center justify-center w-full py-5 sm:py-6 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-black font-black text-lg sm:text-xl tracking-tight overflow-hidden transition-all hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.3)] cursor-pointer"
             >
               <span className="relative z-10 flex items-center gap-2">
-                ENTRAR AGORA NO PRIVADO 😈
+                LIBERAR MEU ACESSO AGORA 🤫
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
               </span>
-            </motion.a>
+            </motion.button>
 
-            <motion.a
-              href="https://t.me/Julia38bot"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={() => {
+                const target = atob("aHR0cHM6Ly90Lm1lL0p1bGlhMzhib3Q=");
+                window.open(target, '_blank', 'noopener,noreferrer');
+              }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="mt-4 inline-flex items-center justify-center w-full py-3.5 px-6 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500/20 font-bold text-base tracking-wide transition-all"
+              className="mt-4 inline-flex items-center justify-center w-full py-3.5 px-6 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500/20 font-bold text-base tracking-wide transition-all cursor-pointer"
             >
               <span className="flex items-center gap-2">
                 <Send size={18} />
                 Prévias do Telegram
               </span>
-            </motion.a>
+            </motion.button>
             
             <p className="mt-6 text-zinc-500 text-sm">
               Pagamento único. Acesso imediato.
