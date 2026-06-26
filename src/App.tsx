@@ -256,15 +256,7 @@ export default function App() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-radial from-emerald-500/10 to-transparent opacity-50 pointer-events-none" />
         
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          {/* Top Video Showcase */}
-          <div className="flex justify-center items-center my-8 w-full">
-            <iframe 
-              src="https://www.tiktok.com/embed/7655503792741403925" 
-              style={{ width: '100%', maxWidth: '325px', height: '705px', border: 'none', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} 
-              allow="autoplay; encrypted-media" 
-              allowFullScreen={true}>
-            </iframe>
-          </div>
+
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
