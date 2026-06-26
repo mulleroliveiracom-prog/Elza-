@@ -257,15 +257,13 @@ export default function App() {
         
         <div className="max-w-3xl mx-auto text-center relative z-10">
           {/* Top Video Showcase */}
-          <div className="mb-8 max-w-sm mx-auto">
-            <video 
-              src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-              autoPlay={true}
-              muted={true}
-              loop={true}
-              playsInline={true}
-              className="w-full rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl aspect-[9/16] object-cover"
-            />
+          <div className="flex justify-center items-center my-8 w-full">
+            <iframe 
+              src="https://www.tiktok.com/embed/7655503792741403925" 
+              style={{ width: '100%', maxWidth: '325px', height: '705px', border: 'none', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} 
+              allow="autoplay; encrypted-media" 
+              allowFullScreen={true}>
+            </iframe>
           </div>
 
           <motion.div
